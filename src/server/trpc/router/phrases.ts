@@ -11,7 +11,12 @@ export const phrasesRouter = router({
       });
       return phrase;
     }),
-  getPhrase: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.phrase.findMany();
+  getRandomPhrase: publicProcedure.query(async ({ ctx }) => {
+    const phrasesCount = await ctx.prisma.phrase.count();
+    const skip = Math.floor(Math.random() * phrasesCount);
+    return await ctx.prisma.phrase.findFirst({
+      take: 1,
+      skip: skip,
+    });
   }),
 });
