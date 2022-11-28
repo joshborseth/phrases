@@ -4,7 +4,7 @@ import Link from "next/link";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const { data, error, isLoading, refetch } =
+  const { data, error, isLoading, refetch, isRefetching } =
     trpc.phrase.getRandomPhrase.useQuery();
   return (
     <>
@@ -14,7 +14,7 @@ const Home: NextPage = () => {
       <main className="flex min-h-screen flex-col items-center justify-center gap-20 py-20 text-center">
         <h1 className="text-4xl">Random Phrases</h1>
         {data && <p className="text-xl">{data.phrase}</p>}
-        {isLoading && <p className="text-xl">Loading...</p>}
+        {isLoading || (isRefetching && <p className="text-xl">Loading...</p>)}
         {error && (
           <p className="text-xl text-red-500">
             An error occurred while fetching a phrase. {error.message}
