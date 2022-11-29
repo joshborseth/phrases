@@ -13,7 +13,9 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center gap-20 py-20 text-center">
         <h1 className="text-4xl">Random Phrases</h1>
-        {data && <p className="text-xl">{data.phrase}</p>}
+        {data && !isLoading && !isRefetching && (
+          <p className="text-xl">{data.phrase}</p>
+        )}
         {isLoading || (isRefetching && <p className="text-xl">Loading...</p>)}
         {error && (
           <p className="text-xl text-red-500">
