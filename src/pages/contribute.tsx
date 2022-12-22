@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { type FormEvent, useRef, useState } from "react";
+import Nav from "../components/Nav";
 import { trpc } from "../utils/trpc";
 const Contribute = () => {
   const [isDone, setIsDone] = useState(false);
@@ -30,11 +31,11 @@ const Contribute = () => {
     }
   };
   return (
-    <>
+    <div className="flex min-h-screen flex-col justify-around">
       <Head>
         <title>Random Phrases | Contribute</title>
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center">
+      <main className="flex flex-col items-center justify-center">
         <h1 className="py-20 text-4xl">Contribute a Phrase</h1>
         <form
           className="flex flex-col items-center justify-center gap-20"
@@ -51,18 +52,14 @@ const Contribute = () => {
               className="input-bordered input resize-none"
             />
           </div>
-          <div className="flex gap-2">
-            <button className="btn-primary btn" type="submit">
-              Submit
-            </button>
-            <Link href="/" className="btn-secondary btn">
-              Back
-            </Link>
-          </div>
+          <button className="btn-primary btn" type="submit">
+            Submit
+          </button>
         </form>
         <Alert isSuccess={postPhrase.isSuccess} isDone={isDone} />
       </main>
-    </>
+      <Nav />
+    </div>
   );
 };
 

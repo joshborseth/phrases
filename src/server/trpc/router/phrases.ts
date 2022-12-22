@@ -19,4 +19,14 @@ export const phrasesRouter = router({
       skip: skip,
     });
   }),
+  getAllPhrases: publicProcedure.query(async ({ ctx }) => {
+    return await ctx.prisma.phrase.findMany();
+  }),
+  deletePhrase: publicProcedure.input(z.string()).mutation(async ({ ctx, input }) => {
+    return await ctx.prisma.phrase.delete({
+      where: {
+        id: input,
+      },
+    });
+  }),
 });
