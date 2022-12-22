@@ -5,26 +5,28 @@ import { trpc } from "../utils/trpc";
 const Contribute = () => {
   const [isDone, setIsDone] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const showToast = () => {
+    setIsDone(true);
+    setTimeout(() => {
+      setIsDone(false);
+    }, 1000);
+  };
   const postPhrase = trpc.phrase.createPhrase.useMutation({
     onSuccess: () => {
       if (inputRef.current?.value) inputRef.current.value = "";
-      setIsDone(true);
-      setTimeout(() => {
-        setIsDone(false);
-      }, 1000);
+      showToast();
     },
     onError: () => {
-      setIsDone(true);
-      setTimeout(() => {
-        setIsDone(false);
-      }, 1000);
+      showToast();
     },
   });
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const phrase = inputRef.current?.value;
     if (phrase && phrase.length > 0) {
-      postPhrase.mutate({ phrase });
+      postPhrase.mutate({
+        phrase,
+      });
     }
   };
   return (
@@ -66,18 +68,14 @@ const Contribute = () => {
 
 export default Contribute;
 
-const Alert = ({
-  isDone,
-  isSuccess,
-}: {
-  isDone?: boolean;
-  isSuccess?: boolean;
-}) => {
+const Alert = ({ isDone, isSuccess }: { isDone?: boolean; isSuccess?: boolean }) => {
   return (
     <div
       className={`alert mx-auto my-10 w-2/3 text-base shadow-lg ${
         isSuccess ? "alert-success" : "alert-error"
-      } ${isDone ? "opacity-100" : "opacity-0"} transition-opacity`}
+      } 
+      
+      ${isDone ? "opacity-100" : "opacity-0"} transition-opacity`}
     >
       <div>
         {isSuccess ? (
@@ -110,9 +108,7 @@ const Alert = ({
           </svg>
         )}
 
-        <span>
-          {isSuccess ? "Phrase Submitted!" : "Error Submitting Phrase"}
-        </span>
+        <span>{isSuccess ? "Phrase Submitted!" : "Error Submitting Phrase"}</span>
       </div>
     </div>
   );
