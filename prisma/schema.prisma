@@ -16,4 +16,5 @@ model Phrase {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   phrase    String
+  type String @default("phrase")
 }

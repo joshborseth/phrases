@@ -2,9 +2,9 @@ import Link from "next/link";
 
 const Nav = () => {
   return (
-    <footer className="w-full p-10">
+    <footer className="fixed bottom-0 left-0 right-0 w-full bg-neutral p-10">
       <nav className="w-full">
-        <ul className="flex w-full flex-wrap justify-center gap-20">
+        <ul className="flex w-full flex-wrap justify-center gap-2">
           <li>
             <Link className="btn-primary btn" href="/">
               Phrase Generator

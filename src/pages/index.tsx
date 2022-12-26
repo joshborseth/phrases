@@ -11,11 +11,11 @@ const Home: NextPage = () => {
     });
   const isFetchingPhrase = isFetching || isLoading || isRefetching;
   return (
-    <div className="flex min-h-screen flex-col justify-around">
+    <>
       <Head>
         <title>Random Phrases | Home</title>
       </Head>
-      <main className="flex flex-col items-center justify-center gap-20 text-center text-2xl">
+      <main className="flex min-h-screen flex-col items-center justify-center gap-10 text-center text-2xl">
         <h1 className="text-4xl">Random Phrases</h1>
         <p className="text-lg">
           {data && !isFetchingPhrase ? data.phrase : "Loading..."}
@@ -25,7 +25,7 @@ const Home: NextPage = () => {
         </button>
       </main>
       <Nav />
-    </div>
+    </>
   );
 };
 

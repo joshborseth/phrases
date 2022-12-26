@@ -1,26 +1,55 @@
 import { Phrase } from "@prisma/client";
 import { type NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 import Nav from "../components/Nav";
 import { trpc } from "../utils/trpc";
 
 const Manage: NextPage = () => {
-  const { data, isLoading, error } = trpc.phrase.getAllPhrases.useQuery();
+  const [page, setPage] = useState(0);
+  const { data, fetchNextPage, error, isLoading, isFetchingNextPage } =
+    trpc.phrase.getAllPhrases.useInfiniteQuery(
+      {
+        limit: 4,
+      },
+      {
+        getNextPageParam: (lastPage) => lastPage.nextCursor,
+      }
+    );
+  const handleFetchNextPage = () => {
+    fetchNextPage();
+    setPage((prev) => prev + 1);
+  };
+
+  const handleFetchPreviousPage = () => {
+    setPage((prev) => prev - 1);
+  };
+
+  // data will be split in pages
+  const toShow = data?.pages[page]?.items;
+  const loading = isLoading || isFetchingNextPage;
   return (
-    <div className="flex min-h-screen flex-col justify-around">
+    <div className="flex min-h-screen flex-col justify-start pb-80 md:pb-0">
       <Head>
         <title>Random Phrases | Manage Phrases</title>
       </Head>
       <main className="text-center text-lg">
         <h1 className="py-10 text-4xl">Manage Phrases</h1>
         <section className="grid grid-cols-1 sm:grid-cols-2">
-          {data &&
-            data.map((phrase) => {
-              return <Phrase key={phrase.id} phrase={phrase} />;
-            })}
+          {toShow?.map((phrase) => (
+            <Phrase key={phrase.id} phrase={phrase} />
+          ))}
           {error && <p className="col-span-3">{error.message}</p>}
-          {isLoading && <p className="col-span-3">Loading...</p>}
+          {loading && <p className="col-span-3">Loading...</p>}
         </section>
+        <div className="flex w-full justify-center gap-5">
+          <button onClick={() => handleFetchPreviousPage()} className="btn-warning btn">
+            Previous
+          </button>
+          <button onClick={() => handleFetchNextPage()} className="btn-success btn">
+            Next
+          </button>
+        </div>
       </main>
       <Nav />
     </div>
