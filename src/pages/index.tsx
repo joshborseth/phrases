@@ -25,7 +25,7 @@ const Home: NextPage = () => {
             <Image
               height={100}
               width={100}
-              alt="Triangles Loading Spinner 1"
+              alt="Loading Spinner"
               src="/ball-triangle.svg"
             />
           )}
