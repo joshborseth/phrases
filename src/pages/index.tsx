@@ -1,7 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Loading from "../components/Loading";
-import Nav from "../components/Nav";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
@@ -25,7 +24,6 @@ const Home: NextPage = () => {
           Generate Phrase
         </button>
       </main>
-      <Nav />
     </>
   );
 };

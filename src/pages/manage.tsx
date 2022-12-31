@@ -2,14 +2,13 @@ import { Phrase } from "@prisma/client";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Loading from "../components/Loading";
-import Nav from "../components/Nav";
 import { trpc } from "../utils/trpc";
 
 const Manage: NextPage = () => {
   const { data, fetchNextPage, hasNextPage, error, isLoading, isFetchingNextPage } =
     trpc.phrase.getAllPhrases.useInfiniteQuery(
       {
-        limit: 8,
+        limit: 5,
       },
       {
         getNextPageParam: (lastPage) => lastPage.nextCursor,
@@ -19,7 +18,6 @@ const Manage: NextPage = () => {
   const loading = isLoading || isFetchingNextPage;
   return (
     <>
-      <Nav />
       <Head>
         <title>Random Phrases | Manage Phrases</title>
       </Head>

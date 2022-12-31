@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { type FormEvent, useRef, useState } from "react";
-import Nav from "../components/Nav";
 import { trpc } from "../utils/trpc";
 const Contribute = () => {
   const [isDone, setIsDone] = useState(false);
@@ -57,7 +56,6 @@ const Contribute = () => {
         </form>
         <Alert isSuccess={postPhrase.isSuccess} isDone={isDone} />
       </main>
-      <Nav />
     </div>
   );
 };
