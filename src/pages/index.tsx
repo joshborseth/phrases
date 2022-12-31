@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
+import Loading from "../components/Loading";
 import Nav from "../components/Nav";
 import { trpc } from "../utils/trpc";
 
@@ -18,18 +18,9 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center gap-10 text-center text-2xl">
         <h1 className="text-4xl">Random Phrases</h1>
-        <p className="flex h-[100px] items-center justify-center text-lg">
-          {data && !isFetchingPhrase ? (
-            data.phrase
-          ) : (
-            <Image
-              height={100}
-              width={100}
-              alt="Loading Spinner"
-              src="/ball-triangle.svg"
-            />
-          )}
-        </p>
+        <div className="flex h-[100px] items-center justify-center text-lg">
+          {data && !isFetchingPhrase ? data.phrase : <Loading />}
+        </div>
         <button onClick={() => refetch()} className="btn-secondary btn">
           Generate Phrase
         </button>

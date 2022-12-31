@@ -1,7 +1,7 @@
 import { Phrase } from "@prisma/client";
 import { type NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
+import Loading from "../components/Loading";
 import Nav from "../components/Nav";
 import { trpc } from "../utils/trpc";
 
@@ -32,12 +32,7 @@ const Manage: NextPage = () => {
           {error && <p className="col-span-3">{error.message}</p>}
           {loading && (
             <div className="flex w-screen justify-center">
-              <Image
-                height={100}
-                width={100}
-                alt="Loading Spinner"
-                src="/ball-triangle.svg"
-              />
+              <Loading />
             </div>
           )}
         </section>

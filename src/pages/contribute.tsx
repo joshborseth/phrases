@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import { type FormEvent, useRef, useState } from "react";
 import Nav from "../components/Nav";
 import { trpc } from "../utils/trpc";
