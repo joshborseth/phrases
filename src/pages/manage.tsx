@@ -51,7 +51,7 @@ export default Manage;
 
 const Phrase = ({ phrase }: { phrase: Phrase }) => {
   const utils = trpc.useContext();
-  const { mutate } = trpc.phrase.deletePhrase.useMutation({
+  const { mutate, isLoading } = trpc.phrase.deletePhrase.useMutation({
     onSuccess: () => {
       utils.phrase.invalidate();
     },
@@ -59,7 +59,11 @@ const Phrase = ({ phrase }: { phrase: Phrase }) => {
   return (
     <article className="mx-5 my-2 flex items-center justify-between gap-5 rounded border-2 p-4 text-left lg:mx-16">
       <p>{phrase.phrase}</p>
-      <button className="btn-error btn h-10 w-10" onClick={() => mutate(phrase.id)}>
+      <button
+        className="btn-error btn h-10 w-10"
+        disabled={isLoading}
+        onClick={() => mutate(phrase.id)}
+      >
         X
       </button>
     </article>
