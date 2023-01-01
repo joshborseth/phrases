@@ -3,12 +3,11 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Loading from "../components/Loading";
 import { trpc } from "../utils/trpc";
-
 const Manage: NextPage = () => {
   const { data, fetchNextPage, hasNextPage, error, isLoading, isFetchingNextPage } =
     trpc.phrase.getAllPhrases.useInfiniteQuery(
       {
-        limit: 5,
+        limit: 6,
       },
       {
         getNextPageParam: (lastPage) => lastPage.nextCursor,
