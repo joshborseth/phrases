@@ -39,7 +39,7 @@ const Nav = () => {
           <Link href="/" className="btn-ghost btn text-2xl normal-case lg:text-3xl">
             Phrase Generator
           </Link>
-          <ul className="menu menu-horizontal hidden px-1 lg:flex">
+          <ul className="menu menu-horizontal hidden gap-2 px-1 lg:flex">
             <li>
               <Link href="/contribute">Contribute</Link>
             </li>
