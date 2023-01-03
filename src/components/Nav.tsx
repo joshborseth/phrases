@@ -1,8 +1,13 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { trpc } from "../utils/trpc";
 
 const Nav = () => {
-  const { data: session } = useSession();
+  const { data: isAuthed } = useSession();
+  const { data: session } = trpc.userRouter.getUserInfo.useQuery(undefined, {
+    enabled: isAuthed ? true : false,
+  });
+
   return (
     <header>
       <nav className="navbar fixed top-0 left-0 right-0 border-b bg-base-300 p-5 text-xl">
@@ -31,11 +36,11 @@ const Nav = () => {
               <li>
                 <Link href="/contribute">Contribute</Link>
               </li>
-              {/* {session?.user?.isAdmin && (
+              {session?.role === "ADMIN" && (
                 <li>
                   <Link href="/manage">Manage</Link>
                 </li>
-              )} */}
+              )}
             </ul>
           </div>
           <Link href="/" className="btn-ghost btn text-2xl normal-case lg:text-3xl">
@@ -45,11 +50,11 @@ const Nav = () => {
             <li>
               <Link href="/contribute">Contribute</Link>
             </li>
-            {/* {session?.user?.isAdmin && (
+            {session?.role === "ADMIN" && (
               <li>
                 <Link href="/manage">Manage</Link>
               </li>
-            )} */}
+            )}
           </ul>
         </div>
         <div className="navbar-end">

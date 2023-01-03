@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { router, publicProcedure, protectedProcedure } from "../trpc";
@@ -30,6 +31,10 @@ export const phrasesRouter = router({
       })
     )
     .query(async ({ ctx, input }) => {
+      const userInfo = await ctx.prisma.user.findUnique({
+        where: { id: ctx.session?.user?.id },
+      });
+      if (userInfo?.role !== "ADMIN") throw new TRPCError({ code: "UNAUTHORIZED" });
       const { limit, skip, cursor } = input;
       const items = await ctx.prisma.phrase.findMany({
         take: limit + 1,
@@ -53,6 +58,10 @@ export const phrasesRouter = router({
       };
     }),
   deletePhrase: protectedProcedure.input(z.string()).mutation(async ({ ctx, input }) => {
+    const userInfo = await ctx.prisma.user.findUnique({
+      where: { id: ctx.session?.user?.id },
+    });
+    if (userInfo?.role !== "ADMIN") throw new TRPCError({ code: "UNAUTHORIZED" });
     return await ctx.prisma.phrase.delete({
       where: {
         id: input,
