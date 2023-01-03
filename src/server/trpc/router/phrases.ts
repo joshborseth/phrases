@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { router, publicProcedure } from "../trpc";
+import { router, publicProcedure, protectedProcedure } from "../trpc";
 
 export const phrasesRouter = router({
   createPhrase: publicProcedure
@@ -19,7 +19,7 @@ export const phrasesRouter = router({
       skip: skip,
     });
   }),
-  getAllPhrases: publicProcedure
+  getAllPhrases: protectedProcedure
     .input(
       z.object({
         limit: z.number(),
@@ -52,7 +52,7 @@ export const phrasesRouter = router({
         nextCursor,
       };
     }),
-  deletePhrase: publicProcedure.input(z.string()).mutation(async ({ ctx, input }) => {
+  deletePhrase: protectedProcedure.input(z.string()).mutation(async ({ ctx, input }) => {
     return await ctx.prisma.phrase.delete({
       where: {
         id: input,

@@ -31,9 +31,11 @@ const Nav = () => {
               <li>
                 <Link href="/contribute">Contribute</Link>
               </li>
-              <li>
-                <Link href="/manage">Manage</Link>
-              </li>
+              {session?.user?.isAdmin && (
+                <li>
+                  <Link href="/manage">Manage</Link>
+                </li>
+              )}
             </ul>
           </div>
           <Link href="/" className="btn-ghost btn text-2xl normal-case lg:text-3xl">
@@ -43,9 +45,11 @@ const Nav = () => {
             <li>
               <Link href="/contribute">Contribute</Link>
             </li>
-            <li>
-              <Link href="/manage">Manage</Link>
-            </li>
+            {session?.user?.isAdmin && (
+              <li>
+                <Link href="/manage">Manage</Link>
+              </li>
+            )}
           </ul>
         </div>
         <div className="navbar-end">
