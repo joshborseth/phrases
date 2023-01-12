@@ -61,7 +61,7 @@ const Nav = () => {
           {session ? (
             <button
               className="btn-secondary btn text-secondary-content"
-              onClick={() => signOut()}
+              onClick={() => signOut({ callbackUrl: "/" })}
             >
               Sign Out
             </button>
