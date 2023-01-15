@@ -13,7 +13,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Random Phrases | Home</title>
+        <title>Random Phrases | Home 1</title>
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center gap-10 text-center text-2xl">
         <h1 className="text-4xl">Random Phrases</h1>
