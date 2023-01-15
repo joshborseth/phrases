@@ -1,9 +1,6 @@
-import { Phrase } from "@prisma/client";
 import { type NextPage } from "next";
 import Head from "next/head";
 import AllUsersList from "src/components/AllUsersList";
-import Loading from "../components/Loading";
-import { trpc } from "../utils/trpc";
 const Users: NextPage = () => {
   return (
     <>
