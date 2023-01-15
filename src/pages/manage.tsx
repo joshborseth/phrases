@@ -27,19 +27,18 @@ const Manage: NextPage = () => {
             page.items.map((phrase) => <Phrase key={phrase.id} phrase={phrase} />)
           )}
           {error && <p className="col-span-3">{error.message}</p>}
-          {loading && (
-            <div className="flex w-screen justify-center">
-              <Loading />
-            </div>
-          )}
         </section>
-        {hasNextPage && (
+        {hasNextPage && !loading ? (
           <button
             onClick={() => fetchNextPage()}
             className="btn-secondary btn mx-auto my-10"
           >
             Load More
           </button>
+        ) : (
+          <div className="mx-auto">
+            <Loading />
+          </div>
         )}
       </main>
     </>
