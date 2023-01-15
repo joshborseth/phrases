@@ -21,7 +21,6 @@ export const publicProcedure = t.procedure;
  * Reusable middleware to ensure
  * users are logged in
  */
-
 const protect = t.middleware(({ ctx, next }) => {
   if (!ctx.session?.user || !ctx.session) {
     throw new TRPCError({ code: "UNAUTHORIZED" });

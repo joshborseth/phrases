@@ -37,9 +37,14 @@ const Nav = () => {
                 <Link href="/contribute">Contribute</Link>
               </li>
               {session?.role === "ADMIN" && (
-                <li>
-                  <Link href="/manage">Manage</Link>
-                </li>
+                <>
+                  <li>
+                    <Link href="/manage">Manage Phrases</Link>
+                  </li>
+                  <li>
+                    <Link href="/users">Manage Users</Link>
+                  </li>
+                </>
               )}
             </ul>
           </div>
@@ -51,9 +56,14 @@ const Nav = () => {
               <Link href="/contribute">Contribute</Link>
             </li>
             {session?.role === "ADMIN" && (
-              <li>
-                <Link href="/manage">Manage</Link>
-              </li>
+              <>
+                <li>
+                  <Link href="/manage">Manage Phrases</Link>
+                </li>
+                <li>
+                  <Link href="/users">Manage Users</Link>
+                </li>
+              </>
             )}
           </ul>
         </div>

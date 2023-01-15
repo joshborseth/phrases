@@ -1,3 +1,0 @@
-[x] make a proper navigation
-[] make a proper footer
-[] make infinite query thingy work good and cool like
