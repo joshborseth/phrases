@@ -39,7 +39,7 @@ const Nav = () => {
               {session?.role === "ADMIN" && (
                 <>
                   <li>
-                    <Link href="/manage">Manage Phrases</Link>
+                    <Link href="/manage">Manage Phrases 1</Link>
                   </li>
                   <li>
                     <Link href="/users">Manage Users</Link>
