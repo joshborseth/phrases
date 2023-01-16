@@ -6,7 +6,9 @@ const AllUsersList = () => {
   return (
     <ul>
       {data &&
-        data.map((user) => <User key={user.id} name={user.name} role={user.role} />)}
+        data.map((user) => (
+          <User key={user.id} id={user.id} name={user.name} role={user.role} />
+        ))}
       {error && <p>{error.message}</p>}
       {isLoading && (
         <div className="flex w-screen justify-center">
@@ -19,9 +21,10 @@ const AllUsersList = () => {
 
 export default AllUsersList;
 
-type userProps = { name: string | null; role: string };
+type userProps = { name: string | null; role: string; id: string };
 
 const User = (props: userProps) => {
+  const { mutate: promoteUser } = trpc.userRouter.promoteUserToAdmin.useMutation();
   return (
     <li className="relative mx-auto flex w-1/2 items-center justify-between gap-5 border-2 p-10">
       <div className="flex gap-2">
@@ -29,7 +32,11 @@ const User = (props: userProps) => {
         <p>|</p>
         <p className="capitalize">{props.role.toLowerCase()}</p>
       </div>
-      <button disabled={props.role === "ADMIN"} className="btn-success btn">
+      <button
+        onClick={() => promoteUser({ userId: props.id })}
+        disabled={props.role === "ADMIN"}
+        className="btn-success btn"
+      >
         promote to admin
       </button>
     </li>
