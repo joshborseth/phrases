@@ -6,7 +6,7 @@ const Nav = () => {
   return (
     <header>
       <nav className="navbar fixed top-0 left-0 right-0 border-b bg-base-300 p-5 text-xl">
-        <div className="navbar-start">
+        <div className="navbar-start w-full">
           <div className="dropdown">
             <label tabIndex={0} className="btn-ghost btn lg:hidden">
               <svg
@@ -62,7 +62,7 @@ const Nav = () => {
             )}
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end w-auto">
           {session ? (
             <button
               className="btn-secondary btn text-secondary-content"

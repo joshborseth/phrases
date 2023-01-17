@@ -26,7 +26,7 @@ type userProps = { name: string | null; role: string; id: string };
 const User = (props: userProps) => {
   const { mutate: promoteUser } = trpc.userRouter.promoteUserToAdmin.useMutation();
   return (
-    <li className="relative mx-auto flex w-1/2 items-center justify-between gap-5 border-2 p-10">
+    <li className="relative mx-auto flex w-3/4 items-center justify-between gap-5 border-2 p-10 lg:w-1/2">
       <div className="flex gap-2">
         <p>{props.name ? props.name : "Anonymous User"}</p>
         <p>|</p>
@@ -37,7 +37,7 @@ const User = (props: userProps) => {
         disabled={props.role === "ADMIN"}
         className="btn-success btn"
       >
-        promote to admin
+        promote
       </button>
     </li>
   );
