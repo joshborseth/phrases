@@ -1,3 +1,4 @@
+import { adminProcedure } from "./../trpc";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { router, protectedProcedure } from "../trpc";
@@ -26,5 +27,9 @@ export const userRouter = router({
     if (adminUserInfo?.role !== "ADMIN") throw new TRPCError({ code: "UNAUTHORIZED" });
     const allUsers = await ctx.prisma.user.findMany();
     return allUsers;
+  }),
+
+  testMethod: adminProcedure.query(async ({ ctx }) => {
+    return "test";
   }),
 });

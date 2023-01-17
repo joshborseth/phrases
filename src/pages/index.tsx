@@ -10,6 +10,8 @@ const Home: NextPage = () => {
       refetchOnWindowFocus: false,
     });
   const isFetchingPhrase = isFetching || isLoading || isRefetching;
+  const { data: test } = trpc.userRouter.testMethod.useQuery();
+  console.log(test);
   return (
     <>
       <Head>
