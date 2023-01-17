@@ -34,9 +34,9 @@ const protect = t.middleware(({ ctx, next }) => {
 });
 export const protectedProcedure = t.procedure.use(protect);
 
-const isAdmin = t.middleware(({ ctx, next }) => {
+const admin = t.middleware(({ ctx, next }) => {
   if (ctx.session?.user?.role !== "ADMIN") {
-    throw new TRPCError({ code: "FORBIDDEN" });
+    throw new TRPCError({ code: "FORBIDDEN", message: "Not an admin!" });
   }
   return next({
     ctx: {
@@ -46,4 +46,4 @@ const isAdmin = t.middleware(({ ctx, next }) => {
   });
 });
 
-export const adminProcedure = t.procedure.use(isAdmin);
+export const adminProcedure = t.procedure.use(admin);
