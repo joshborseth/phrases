@@ -24,7 +24,13 @@ export default AllUsersList;
 type userProps = { name: string | null; role: string; id: string };
 
 const User = (props: userProps) => {
-  const { mutate: promoteUser } = trpc.userRouter.promoteUserToAdmin.useMutation();
+  const utils = trpc.useContext();
+  const { mutate: promoteUser, isLoading } =
+    trpc.userRouter.promoteUserToAdmin.useMutation({
+      onSuccess: () => {
+        utils.userRouter.getAllUsers.invalidate();
+      },
+    });
   return (
     <li className="relative mx-auto flex w-3/4 items-center justify-between gap-5 border-2 p-10 lg:w-1/2">
       <div className="flex gap-2">
@@ -35,7 +41,7 @@ const User = (props: userProps) => {
       <button
         onClick={() => promoteUser({ userId: props.id })}
         disabled={props.role === "ADMIN"}
-        className="btn-success btn"
+        className={`btn-success btn ${isLoading && "loading"}`}
       >
         promote
       </button>
