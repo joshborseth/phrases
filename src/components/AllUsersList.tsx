@@ -32,7 +32,7 @@ const User = (props: userProps) => {
       },
     });
   return (
-    <li className="relative mx-auto flex w-3/4 items-center justify-between gap-5 border-2 p-10 lg:w-1/2">
+    <li className="relative mx-auto flex w-5/6 flex-col items-center justify-between gap-5 border-2 p-5 lg:w-1/2 lg:flex-row lg:p-10">
       <div className="flex gap-2">
         <p>{props.name ? props.name : "Anonymous User"}</p>
         <p>|</p>
