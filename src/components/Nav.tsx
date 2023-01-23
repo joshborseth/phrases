@@ -1,6 +1,5 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import Loading from "./Loading";
 
 const Nav = () => {
   const { data: session, status } = useSession();
@@ -66,7 +65,7 @@ const Nav = () => {
         <div className="navbar-end w-auto">
           {session && (
             <button
-              className="btn-secondary btn text-secondary-content"
+              className="btn-error btn text-secondary-content"
               onClick={() => signOut({ callbackUrl: "/" })}
             >
               Sign Out
@@ -74,7 +73,7 @@ const Nav = () => {
           )}
           {!session && status !== "loading" && (
             <button
-              className="btn-primary btn text-primary-content"
+              className="btn-success btn text-primary-content"
               onClick={() => signIn()}
             >
               Sign In
