@@ -21,7 +21,7 @@ const Home: NextPage = () => {
           {data && !isFetchingPhrase ? data.phrase : <Loading />}
         </div>
         <button onClick={() => refetch()} className="btn-secondary btn">
-          Generate Phrase
+          Generate New Phrase
         </button>
       </main>
     </>
