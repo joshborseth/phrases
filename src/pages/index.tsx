@@ -11,14 +11,6 @@ const Home: NextPage = () => {
       refetchOnWindowFocus: false,
     });
   const isFetchingPhrase = isFetching || isLoading || isRefetching;
-  const { data: webhook } = useQuery({
-    queryKey: ["webhook"],
-    queryFn: async () => {
-      const res = await fetch("/api/webhook");
-      return res.json();
-    },
-  });
-  console.log(webhook);
   return (
     <>
       <Head>

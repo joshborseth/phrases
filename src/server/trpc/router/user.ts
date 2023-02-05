@@ -1,5 +1,4 @@
 import { adminProcedure } from "./../trpc";
-import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { router, protectedProcedure } from "../trpc";
 
