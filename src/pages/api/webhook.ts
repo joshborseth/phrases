@@ -12,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   console.log(`Form data: `, data);
 
-  return res.status(200).json({ data });
+  return res.status(200).json("hey man");
 };
 
 export const config = {
