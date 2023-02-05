@@ -3,8 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const rawBody = (await buffer(req)).toString();
-  const data = JSON.parse(rawBody);
-  return res.status(200).json({ data });
+  return res.status(200).json({ rawBody });
 };
 
 export const config = {
