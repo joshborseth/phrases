@@ -6,3 +6,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log("each their own");
   res.status(200).json(rawBody);
 };
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
