@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Loading from "../components/Loading";
@@ -10,6 +11,11 @@ const Home: NextPage = () => {
       refetchOnWindowFocus: false,
     });
   const isFetchingPhrase = isFetching || isLoading || isRefetching;
+  const { data: webhook } = useQuery(["webhook"], async () => {
+    const res = await fetch("/api/webhook");
+    return res.json();
+  });
+  console.log(webhook);
   return (
     <>
       <Head>
