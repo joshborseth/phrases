@@ -5,3 +5,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const rawBody = await buffer(req);
   res.status(200).json(rawBody);
 };
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
