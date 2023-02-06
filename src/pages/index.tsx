@@ -24,7 +24,12 @@ const Home: NextPage = () => {
         <button onClick={() => refetch()} className="btn-secondary btn">
           Generate New Phrase
         </button>
-        {webhookData && <div>{JSON.stringify(webhookData.response)}</div>}
+        {webhookData && (
+          <div>
+            This is some github data from this repo:{" "}
+            {JSON.stringify(webhookData.response)}
+          </div>
+        )}
       </main>
     </>
   );
