@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import { type NextPage } from "next";
 import Head from "next/head";
 import Loading from "../components/Loading";

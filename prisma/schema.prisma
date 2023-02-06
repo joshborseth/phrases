@@ -3,11 +3,12 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 datasource db {
   provider = "mysql"
   url = env("DATABASE_URL")
-  relationMode = "foreignKeys"
+  referentialIntegrity = "prisma"
 }
 
 model Phrase {
@@ -18,6 +19,12 @@ model Phrase {
   type String @default("phrase")
 }
 
+model Webhook {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  response  Json
+}
 
 // Necessary for Next auth
 model Account {
