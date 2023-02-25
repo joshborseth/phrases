@@ -10,7 +10,6 @@ const Home: NextPage = () => {
       refetchOnWindowFocus: false,
     });
   const isFetchingPhrase = isFetching || isLoading || isRefetching;
-  const { data: webhookData } = trpc.webhookRouter.getWebhook.useQuery();
   return (
     <>
       <Head>
@@ -24,12 +23,6 @@ const Home: NextPage = () => {
         <button onClick={() => refetch()} className="btn-secondary btn">
           Generate New Phrase
         </button>
-        {webhookData && (
-          <div>
-            This is some github data from this repo:{" "}
-            {JSON.stringify(webhookData.response)}
-          </div>
-        )}
       </main>
     </>
   );
